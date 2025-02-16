@@ -1,0 +1,24 @@
+<div class="todo-container">
+  <h1>Todo List</h1>
+
+  <div class="todo-input">
+    <input [(ngModel)]="newTodo" type="text" placeholder="Add new todo...">
+    <button (click)="addTodo()">Add</button>
+  </div>
+
+  <ul *ngIf="todos.length > 0; else noTodos" class="todo-list">
+    <li *ngFor="let todo of todos" class="todo-item">
+      <span [class.completed]="todo.isComplete">{{ todo.name }}</span>
+      <div class="todo-buttons">
+        <button (click)="toggleComplete(todo)">
+          {{ todo.isComplete ? 'Undo' : 'Complete' }}
+        </button>
+        <button (click)="deleteTodo(todo.id)" class="delete-btn">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #noTodos>
+    <p class="no-todos">No todos available.</p>
+  </ng-template>
+</div>
